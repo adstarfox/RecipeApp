@@ -1,0 +1,38 @@
+.recipe-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.search-bar{
+    height: 30px;
+    width: 30%;
+    background-color: peachpuff;
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 16px;
+    margin: 10px 2px;
+}
+
+.search-bar img {
+    height: 95%;
+}
+
+.search-bar input {
+    background-color: transparent;
+    border: 0;
+    font-size: 180%;
+}
+
+.recipe-cards{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}

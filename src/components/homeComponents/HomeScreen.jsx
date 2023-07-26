@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import AdBanner from './AdBanner'
+import RecipeContainer from './RecipeContainer'
+import './HomeScreen.css'
 
 const HomeScreen = () => {  
   const [recipes, setRecipes] = useState([])
@@ -18,8 +20,9 @@ const HomeScreen = () => {
   }, [])
   
   return (
-    <div>
+    <div className='homescreen-container'>
       <AdBanner />
+      <RecipeContainer />
     </div>
   )
 }

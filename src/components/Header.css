@@ -38,6 +38,7 @@
 }
 
 .Button:hover{
+    cursor: pointer;
     background-color: rgb(232, 161, 54);
     box-shadow: 1px 1px 5px black;
 }
