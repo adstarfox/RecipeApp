@@ -2,21 +2,12 @@ import { useState } from "react";
 import React from "react";
 import "./NewRecipeScreen.css";
 import { Formik } from "formik";
+import axios from "axios";
 
 const NewRecipeScreen = () => {
-
-const [ingredients, setIngredients] = useState([])
-const [name, setName] = useState('')
-const [quantity, setQuantity] = useState('')
-
-const addIngredient = () => {
-  setIngredients(...ingredients, {
-    name: name,
-    quantity: quantity
-  })
-  setName('')
-  setQuantity('')
-}
+  const [ingredients, setIngredients] = useState([]);
+  const [name, setName] = useState("");
+  const [quantity, setQuantity] = useState("");
 
   const initialValues = {
     type: "",
@@ -26,12 +17,36 @@ const addIngredient = () => {
     cookTime: "",
     serves: "",
     ingredients: [],
-    instuctions: "",
+    instructions: "",
   };
 
+  const addIngredient = (event) => {
+    event.preventDefault();
+
+    setIngredients([
+      ...ingredients,
+      {
+        name: name,
+        quantity: quantity,
+      },
+    ]);
+    setName("");
+    setQuantity("");
+  };
+
+  const singleIngredient =
+    ingredients.length > 0 &&
+    ingredients.map((ing, index) => {
+      return <li key={index}>{ing.quantity + " " + ing.name}</li>;
+    });
+
   const onSubmit = (values) => {
-    values.ingredients = ingredients
+    values.ingredients = ingredients;
     console.log(values);
+    axios
+      .post(`https://recipes.devmountain.com/recipes`, values)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -40,7 +55,7 @@ const addIngredient = () => {
       <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {({ values, handleChange, handleSubmit }) => {
           return (
-            <form onSubmit={handleSubmit} className="form-form">
+            <form className="form-form">
               <span id="first-container">
                 <input
                   type="text"
@@ -62,8 +77,8 @@ const addIngredient = () => {
                   <input
                     type="radio"
                     name="type"
-                    value={values.type}
-                    onChange={()=>handleChange('cook')}
+                    value="Cook"
+                    onChange={handleChange}
                   />
                   <label>Cook</label>
                 </span>
@@ -71,8 +86,8 @@ const addIngredient = () => {
                   <input
                     type="radio"
                     name="type"
-                    value={values.type}
-                    onChange={()=>handleChange('bake')}
+                    value="Bake"
+                    onChange={handleChange}
                   />
                   <label htmlFor="bake">Bake</label>
                 </span>
@@ -80,8 +95,8 @@ const addIngredient = () => {
                   <input
                     type="radio"
                     name="type"
-                    value={values.type}
-                    onChange={()=>handleChange('drink')}
+                    value="Drink"
+                    onChange={handleChange}
                   />
                   <label htmlFor="drink">Drink</label>
                 </span>
@@ -111,16 +126,26 @@ const addIngredient = () => {
               </span>
               <span id="ingredients-container">
                 <div id="ingredient-inputs">
-                  <input type="text" placeholder="Ingredient" value={name} onChange={(e) => setName(e.target.value)} />
-                  <input type="text" placeholder="Quantity" value={quantity} onChange={e => setQuantity(e.target.value)} />
+                  <input
+                    type="text"
+                    placeholder="Ingredient"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Quantity"
+                    value={quantity}
+                    onChange={(e) => setQuantity(e.target.value)}
+                  />
                 </div>
-                <ul></ul>
+                <ul>{singleIngredient}</ul>
               </span>
-              <button onClick={()=>addIngredient()}>Add Another</button>
+              <button onClick={addIngredient}>Add Another</button>
               <input
                 type="text"
                 placeholder="What are the instructions"
-                value={values.instuctions}
+                value={values.instructions}
                 name="instructions"
                 onChange={handleChange}
               />
