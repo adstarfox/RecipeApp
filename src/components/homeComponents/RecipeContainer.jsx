@@ -3,10 +3,18 @@ import "./RecipeContainer.css";
 import searchIcon from "./../../assets/search.png";
 import { useState } from "react";
 
-const RecipeContainer = () => {
+const RecipeContainer = ({ recipes }) => {
   const [search, setSearch] = useState("");
-  
-  
+
+  let recipeDisplay = recipes
+    .filter(recipe => {
+      if (recipe.recipe_name.toLowerCase().includes(search.toLowerCase())) {
+        return recipe
+      }
+    })
+    .map((recipe, index) => {
+      return <RecipeCard key={index} recipe={recipe} />
+    })
 
   return (
     <div className="recipe-container">
@@ -14,12 +22,13 @@ const RecipeContainer = () => {
         <img src={searchIcon} alt="search" />
         <input
           type="text"
+          value={search}
           placeholder="Search for a Recipe"
           onChange={(e) => setSearch(e.target.value)}
         />
       </span>
       <span className="recipe-cards">
-        <RecipeCard />
+        {recipeDisplay}
       </span>
     </div>
   );

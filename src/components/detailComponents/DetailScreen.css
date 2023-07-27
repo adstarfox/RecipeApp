@@ -1,0 +1,33 @@
+.details-container {
+    display: flex;
+    justify-content: center;
+}
+
+.details-container aside {
+    margin: 50px;
+    box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.301);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.titles {
+    text-align: center;
+    font-size: xx-large;
+    font-weight: 500;
+}
+
+.recipe-ingredients {
+    max-width: 300px;
+    max-height: 400px;
+    overflow-y: scroll;
+    font-size: x-large;
+}
+
+.instructions {
+    max-width: 500px;
+    max-height: 600px;
+    overflow-y: scroll;
+    font-size: x-large;
+}

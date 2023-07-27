@@ -22,7 +22,7 @@ const HomeScreen = () => {
   return (
     <div className='homescreen-container'>
       <AdBanner />
-      <RecipeContainer />
+      <RecipeContainer recipes={recipes} />
     </div>
   )
 }

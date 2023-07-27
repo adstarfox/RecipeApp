@@ -24,8 +24,14 @@
 
 .search-bar input {
     background-color: transparent;
-    border: 0;
+    border: none;
     font-size: 180%;
+}
+
+.search-bar input:focus,
+.search-bar input:active {
+    outline: none;
+    background-color: transparent;
 }
 
 .recipe-cards{

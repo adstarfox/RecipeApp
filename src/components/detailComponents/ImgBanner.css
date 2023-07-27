@@ -1,0 +1,16 @@
+.img-banner{
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+}
+
+.img-banner h1 {
+    font-size: 80px;
+    font-weight: 800;
+    color: rgb(213, 139, 27);
+    text-shadow: black 0px 0px 10px;
+    text-align: center;
+}
