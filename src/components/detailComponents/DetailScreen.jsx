@@ -18,7 +18,7 @@ const DetailScreen = () => {
   }, []);
 
   const ingredientList = recipe.ingredients?.map((ingredient) => {
-    return <h3 key={ingredient.ingredient_id}>{ingredient.ingredient}</h3>;
+    return <h3 key={ingredient.ingredient_id}>{ingredient.quantity} {ingredient.ingredient}</h3>;
   });
 
   return (
