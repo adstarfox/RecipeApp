@@ -3,11 +3,13 @@ import React from "react";
 import "./NewRecipeScreen.css";
 import { Formik } from "formik";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom'
 
 const NewRecipeScreen = () => {
   const [ingredients, setIngredients] = useState([]);
   const [name, setName] = useState("");
   const [quantity, setQuantity] = useState("");
+  const navigate = useNavigate()
 
   const initialValues = {
     type: "",
@@ -42,11 +44,16 @@ const NewRecipeScreen = () => {
 
   const onSubmit = (values) => {
     values.ingredients = ingredients;
+    let newLink;
     console.log(values);
     axios
       .post(`https://recipes.devmountain.com/recipes`, values)
-      .then((res) => console.log(res.data))
+      .then((res) => navigate(`/recipe/${res.data[0][0].recipe_id}`))
       .catch((err) => console.log(err));
+
+      console.log(newLink)
+
+      
   };
 
   return (
@@ -73,35 +80,36 @@ const NewRecipeScreen = () => {
                 />
               </span>
               <div id="radio-btn-container">
-                <span className="radio-btns">
-                  <input
-                    type="radio"
-                    name="type"
-                    value="Cook"
-                    onChange={handleChange}
-                  />
-                  <label>Cook</label>
-                </span>
-                <span className="radio-btns">
-                  <input
-                    type="radio"
-                    name="type"
-                    value="Bake"
-                    onChange={handleChange}
-                  />
-                  <label htmlFor="bake">Bake</label>
-                </span>
-                <span className="radio-btns">
-                  <input
-                    type="radio"
-                    name="type"
-                    value="Drink"
-                    onChange={handleChange}
-                  />
-                  <label htmlFor="drink">Drink</label>
-                </span>
+                  <label className="radio-btns">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="Cook"
+                      onChange={handleChange}
+                    />
+                  Cook
+                  </label>
+                  
+                  <label className="radio-btns">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="Bake"
+                      onChange={handleChange}
+                      />
+                    Bake
+                    </label>
+                  <label className="radio-btns">
+                    <input
+                      type="radio"
+                      name="type"
+                      value="Drink"
+                      onChange={handleChange}
+                    />
+                    
+                    Drink</label>
               </div>
-              <span>
+              <span className="second-container">
                 <input
                   type="text"
                   placeholder="Prep Time"
@@ -141,15 +149,18 @@ const NewRecipeScreen = () => {
                 </div>
                 <ul>{singleIngredient}</ul>
               </span>
-              <button onClick={addIngredient}>Add Another</button>
-              <input
-                type="text"
-                placeholder="What are the instructions"
-                value={values.instructions}
-                name="instructions"
-                onChange={handleChange}
-              />
-              <button onClick={handleSubmit}>Save</button>
+              <button id="ingredient-btn" onClick={addIngredient}>Add Another</button>
+              <textarea name="instructions" id="intructions-container" cols="30" rows="10" placeholder="What are the instructions?" value={values.instructions} onChange={handleChange}>
+                {/* <input
+                  id="intructions-container"
+                  type="text"
+                  placeholder="What are the instructions"
+                  value={values.instructions}
+                  name="instructions"
+                  onChange={handleChange}
+                /> */}
+              </textarea>
+              <button id='save-btn' onClick={handleSubmit}>Save</button>
             </form>
           );
         }}

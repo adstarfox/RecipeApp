@@ -8,7 +8,6 @@
     padding-top: 20px;
 }
 
-
 .form-form{
     height: 100%;
     width: 40%;
@@ -32,30 +31,98 @@
     height: 30px;
     width: 40%;
     font-size: large;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.178);
 }
 
 #radio-btn-container{
     display: flex;
     justify-content: center;
-    gap: 30px;
+    gap: 40px;
 }
 
-.radio-btns input{
-    
+.radio-btns{
+    font-size: x-large;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.radio-btns input {
+    text-align: center;
+    height: 40px;
+    width: 40px;
+}
+
+.second-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.second-container input {
+    height: 40px;
+    width: 150px;
+    font-size: larger;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.178);
 }
 
 #ingredient-inputs{
     display: flex;
     flex-direction: column;
+    justify-content: space-evenly;
     width: 50%;
+}
+
+#ingredient-inputs input {
+    height: 40px;
+    font-size: x-large;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.178);
 }
 
 #ingredients-container {
+    height: 150px;
     display: flex;
+    justify-content: space-between;
 }
 
 #ingredients-container ul{
-    
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 100%;
     width: 50%;
+    text-align: center;
+    overflow-y: scroll;
+}
+
+#ingredient-btn{
+    height: 50px;
+    width: 200px;
+    align-self: center;
+    background-color: rgb(227, 151, 38);
+    border: none;
+    font-weight: 800;
+    font-size: larger;
+    color: white;
+}
+
+#intructions-container{
+    max-height: 150px;
+    min-height: 150px;
+    max-width: 100%;
+    min-width: 100%;
+    font-size: x-large;
+    font-weight: 600;
+    overflow-y: scroll;
+}
+
+#save-btn{
+    height: 50px;
+    width: 200px;
+    align-self: center;
+    background-color: rgba(32, 121, 190, 0.831);
+    border: none;
+    font-weight: 800;
+    font-size: larger;
+    color: white;
 }
